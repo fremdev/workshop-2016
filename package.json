@@ -1,0 +1,20 @@
+{
+  "name": "learning-webpack",
+  "version": "1.0.0",
+  "description": "Learning to use webpack step-by-step",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "Alex Efremov",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^1.13.1"
+  },
+  "dependencies": {
+    "jquery": "^3.0.0"
+  }
+}
