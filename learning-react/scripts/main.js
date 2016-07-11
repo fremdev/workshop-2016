@@ -188,10 +188,13 @@ var Order = React.createClass({
 
     return (
       <li key={key}>
-        {count}lbs
-        {fish.name}
+        <span>
+          <CSSTransitionGroup component="span" transitionName="count" transitionLeaveTimeout={250} transitionEnterTimeout={250} className="count">
+            <span key={count}>{count}</span>
+          </CSSTransitionGroup>
+          <span className="weight">lbs</span> {fish.name} {removeButton}
+        </span>
         <span className="price">{h.formatPrice(count * fish.price)}</span>
-        {removeButton}
       </li>
     )
   },
