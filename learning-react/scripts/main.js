@@ -51,6 +51,12 @@ var App = React.createClass({
     // set the state
     this.setState({fishes: this.state.fishes});
   },
+  removeFish: function(key) {
+    if(confirm("Are you sure you want to remove this fish?")) {
+      this.state.fishes[key] = null;
+      this.setState({fishes: this.state.fishes});
+    }
+  },
   loadSamples: function() {
     this.setState({
       fishes: require('./sample-fishes')
@@ -69,7 +75,7 @@ var App = React.createClass({
           </ul>
         </div>
         <Order fishes={this.state.fishes} order={this.state.order} />
-        <Inventory addFish={this.addFish} loadSamples={this.loadSamples} fishes={this.state.fishes} linkState={this.linkState} />
+        <Inventory addFish={this.addFish} loadSamples={this.loadSamples} fishes={this.state.fishes} linkState={this.linkState} removeFish={this.removeFish} />
       </div>
     )
   }
@@ -227,7 +233,7 @@ var Inventory = React.createClass({
         </select>
         <textarea valueLink={linkState('fishes.' + key + '.desc')}></textarea>
         <input type="text" valueLink={linkState('fishes.' + key + '.image')} />
-        <button>Remove Fish</button>
+        <button onClick={this.props.removeFish.bind(null, key)}>Remove Fish</button>
       </div>
     )
   },
