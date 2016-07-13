@@ -23,13 +23,29 @@ var ProfileName = React.createClass({
   }
 });
 
+var Link = React.createClass({
+  changeURL: function() {
+    window.location.replace(this.props.href)
+  },
+  render: function() {
+    return (
+      <span
+        style={{color: 'blue', cursor: 'pointer'}}
+        onClick={this.changeURL}
+        >
+        {this.props.children}
+      </span>
+    )
+  }
+});
+
 var ProfileLink = React.createClass({
   render: function() {
     return (
       <div>
-        <a href={"https://twitter.com/" + this.props.username}>
+        <Link href={"https://twitter.com/" + this.props.username}>
           {this.props.username}
-        </a>
+        </Link>
       </div>
     )
   }
