@@ -1,0 +1,36 @@
+{
+  "name": "boiler-without-react",
+  "version": "1.0.0",
+  "description": "My boilerplate for pure JS, HTML, CSS",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "keywords": [
+    "JavaScript",
+    "HTML",
+    "CSS"
+  ],
+  "author": "Alex Efremov",
+  "license": "MIT",
+  "dependencies": {
+    "gsap": "^1.19.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.7",
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "html-webpack-plugin": "^2.22.0",
+    "node-sass": "^3.8.0",
+    "path": "^0.12.7",
+    "postcss-loader": "^0.9.1",
+    "sass-loader": "^4.0.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}

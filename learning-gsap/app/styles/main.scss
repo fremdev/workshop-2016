@@ -1,0 +1,15 @@
+@import '_variables.scss';
+
+body {
+    background: $main-color;
+    transition-property: background;
+    transition-duration: 5s;
+    p {
+      color: #333;
+    }
+}
+
+.on {
+    background: #559;
+    display: flex;
+}
