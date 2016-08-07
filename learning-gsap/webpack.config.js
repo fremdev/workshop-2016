@@ -54,7 +54,8 @@ module.exports = {
     root: path.resolve(__dirname),
     extensions: ['', '.js'],
     alias: {
-      "TweenLite": "gsap/src/uncompressed/TweenLite"
+      "TweenLite": "gsap/src/uncompressed/TweenLite",
+      "CSSPlugin": "gsap/src/uncompressed/plugins/CSSPlugin"
     }
   }
 }

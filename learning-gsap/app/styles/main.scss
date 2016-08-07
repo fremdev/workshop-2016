@@ -25,7 +25,6 @@ body {
     transform-style: preserve-3d;
     color: #ffffff;
     font-family: ASAP;
-    overflow: hidden;
 }
 
 .controlButtons {
@@ -123,4 +122,71 @@ body {
 
 .asapReg {
     font-family: ASAP;
+}
+
+.container-wrapper {
+    position: relative;
+    width: 100%;
+    height: 90%;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.gridContainer {
+    position: relative;
+    margin: auto;
+    width: 80%;
+    height: 90%;
+}
+
+.gridRows {
+    position: relative;
+    height: 25%;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.gridBox {
+    position: relative;
+    border: solid 1px #e9e4e8;
+    height: 100%;
+    width: 25%;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.gridBox img {
+    height: 90%;
+    max-width: 90%;
+    margin: auto;
+}
+
+.gridBoxImage {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.gridBoxImage img {
+    height: 90%;
+    max-width: 90%;
+    margin: auto;
+}
+
+.gridBoxTopLeft {
+    border-radius: 10px 0 0 0;
+}
+
+.gridBoxTopRight {
+    border-radius: 0 10px 0 0;
+}
+
+.gridBoxBottomLeft {
+    border-radius: 0 0 0 10px;
+}
+
+.gridBoxBottomRight {
+    border-radius: 0 0 10px 0;
 }
