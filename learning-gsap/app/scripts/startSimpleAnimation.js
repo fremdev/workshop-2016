@@ -1,3 +1,5 @@
+import { TweenLite, CSSPlugin } from 'gsap';
+
 function startTween() {
   const delay = 1;
   TweenLite.to('#toolBox', 2,

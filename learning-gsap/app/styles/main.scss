@@ -27,6 +27,29 @@ body {
     font-family: ASAP;
 }
 
+.controlButtons {
+    position: absolute;
+    left: 20px;
+    width: 100px;
+}
+
+.controlButtons button {
+    height: 50px;
+    width: 100px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    border: none;
+}
+
+.controlButtons button:hover{
+    background-color: #88ce02;
+}
+
+.controlButtons button:focus{
+    outline: 0;
+}
+
 .content-holder {
     position: relative;
     width: 80%;

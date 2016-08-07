@@ -1,7 +1,7 @@
 import './styles/main.scss';
-import { TweenLite, CSSPlugin } from 'gsap';
-import startSimpleAnimation from './scripts/startSimpleAnimation';
+
+import initTimeline from './scripts/timeline';
 
 document.addEventListener('DOMContentLoaded', function() {
-   startSimpleAnimation();
+   initTimeline();
 });
