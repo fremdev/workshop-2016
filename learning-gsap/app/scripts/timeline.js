@@ -1,4 +1,5 @@
 import { TweenLite, CSSPlugin, TimelineLite, EasePack } from 'gsap';
+import addButtonsListeners from './addButtonsListeners';
 
 function initTimeline() {
   const toolTimeline = new TimelineLite({paused: true});
@@ -8,10 +9,7 @@ function initTimeline() {
   toolTimeline.add(TweenLite.to('#crazy', duration, {y:-80, ease: Elastic.easeInOut}));
   toolTimeline.add(TweenLite.to('#leaf', duration, {y:-80, ease: Back.easeInOut}));
 
-  document.getElementById('start').addEventListener('click', () => {toolTimeline.play()});
-  document.getElementById('pause').addEventListener('click', () => {toolTimeline.pause()});
-  document.getElementById('stop').addEventListener('click', () => {toolTimeline.stop()});
-  document.getElementById('reverse').addEventListener('click', () => {toolTimeline.reverse()});
+  addButtonsListeners(toolTimeline);
 }
 
 export default initTimeline;

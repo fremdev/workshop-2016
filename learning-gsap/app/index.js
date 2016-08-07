@@ -1,7 +1,7 @@
 import './styles/main.scss';
 
-import initTimeline from './scripts/timeline';
+import initTimeline from './scripts/timelineMore';
 
-document.addEventListener('DOMContentLoaded', function() {
-   initTimeline();
-});
+window.onload = () => {
+  initTimeline();
+}
