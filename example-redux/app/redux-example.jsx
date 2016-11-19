@@ -3,12 +3,8 @@ var uuid = require('node-uuid');
 
 console.log('Starting redux example');
 
-var stateDefault = {
-  name: 'Anonymous',
-  hobbies: [],
-  movies: []
-};
-
+// Name reducer and action generators
+// -------------------
 var nameReducer = (state = 'Anonymous', action) => {
   switch (action.type) {
     case 'CHANGE_NAME':
@@ -18,9 +14,18 @@ var nameReducer = (state = 'Anonymous', action) => {
   }
 };
 
+var changeName = (name) => {
+  return {
+    type: 'CHANGE_NAME',
+    name
+  };
+};
+
+//  Hobbies reducer and action generators
+// -------------------
 var hobbiesReducer = (state = [], action) => {
   switch (action.type) {
-    case 'ADD_HOBBIE':
+    case 'ADD_HOBBY':
       return [...state, {
         id: uuid(),
         hobby: action.hobby
@@ -32,6 +37,22 @@ var hobbiesReducer = (state = [], action) => {
   }
 };
 
+var addHobby = (hobby) => {
+  return {
+    type: 'ADD_HOBBY',
+    hobby
+  };
+};
+
+var removeHobby = (id) => {
+  return {
+    type: 'REMOVE_HOBBY',
+    id
+  };
+};
+
+// Movies reducer and action generators
+// -------------------
 var moviesReducer = (state = [], action) => {
   switch(action.type) {
     case 'ADD_MOVIE':
@@ -46,6 +67,24 @@ var moviesReducer = (state = [], action) => {
       return state;
   }
 };
+
+var addMovie = (title, genre) => {
+  return {
+    type: 'ADD_MOVIE',
+    title,
+    genre
+  };
+};
+
+var removeMovie = (id) => {
+  return {
+    type: 'REMOVE_MOVIE',
+    id
+  };
+};
+
+// Combine reducers and create store
+// -------------------
 
 var reducer = redux.combineReducers({
   name: nameReducer,
@@ -67,46 +106,20 @@ var unsubscribe = store.subscribe(() => {
 var currentState = store.getState();
 console.log('currentState', currentState);
 
-store.dispatch({
-  type: 'CHANGE_NAME',
-  name: 'Jen'
-});
+store.dispatch(changeName('Emily'));
 
-store.dispatch({
-  type: 'ADD_HOBBIE',
-  hobby: 'Cycling'
-});
+store.dispatch(addHobby('Cycling'));
 
-store.dispatch({
-  type: 'ADD_HOBBIE',
-  hobby: 'Learning languages'
-});
+store.dispatch(addHobby('Learning languages'));
 
 var hobbyId = store.getState().hobbies[1].id;
-store.dispatch({
-  type: 'REMOVE_HOBBY',
-  id: hobbyId
-});
+store.dispatch(removeHobby(hobbyId));
 
-store.dispatch({
-  type: 'ADD_MOVIE',
-  title: 'Forrest Gump',
-  genre: 'Drama'
-});
+store.dispatch(addMovie('Forrest Gump', 'Drama'));
 
-store.dispatch({
-  type: 'CHANGE_NAME',
-  name: 'Alex'
-});
+store.dispatch(changeName('Alex'));
 
-store.dispatch({
-  type: 'ADD_MOVIE',
-  title: 'Terminator 2: Judgment Day',
-  genre: 'Action, Sci-Fi'
-});
+store.dispatch(addMovie('Terminator 2: Judgment Day', 'Action, Sci-Fi'));
 
 var movieId = store.getState().movies[0].id;
-store.dispatch({
-  type: 'REMOVE_MOVIE',
-  id: movieId
-});
+store.dispatch(removeMovie(movieId));
