@@ -9,54 +9,49 @@ var stateDefault = {
   movies: []
 };
 
-var reducer = (state = stateDefault, action) => {
+var nameReducer = (state = 'Anonymous', action) => {
   switch (action.type) {
     case 'CHANGE_NAME':
-      return {
-        ...state,
-        name: action.name
-      };
-    case 'ADD_HOBBIE':
-      return {
-        ...state,
-        hobbies: [
-          ...state.hobbies,
-          {
-            id: uuid(),
-            hobby: action.hobby
-          }
-        ]
-      };
-    case 'REMOVE_HOBBY':
-      return {
-        ...state,
-        hobbies: state.hobbies.filter((hobby) => {
-          return action.id !== hobby.id;
-        })
-      };
-    case 'ADD_MOVIE':
-      return {
-        ...state,
-        movies: [
-          ...state.movies,
-          {
-            id: uuid(),
-            title: action.title,
-            genre: action.genre
-          }
-        ]
-      };
-    case 'REMOVE_MOVIE':
-      return {
-        ...state,
-        movies: state.movies.filter((movie) => {
-          return movie.id !== action.id;
-        })
-      };
+      return action.name;
     default:
       return state;
   }
 };
+
+var hobbiesReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'ADD_HOBBIE':
+      return [...state, {
+        id: uuid(),
+        hobby: action.hobby
+      }];
+    case 'REMOVE_HOBBY':
+      return state.filter((hobby) => action.id !== hobby.id);
+    default:
+      return state;
+  }
+};
+
+var moviesReducer = (state = [], action) => {
+  switch(action.type) {
+    case 'ADD_MOVIE':
+      return [...state, {
+        id: uuid(),
+        title: action.title,
+        genre: action.genre
+      }];
+    case 'REMOVE_MOVIE':
+      return state.filter((movie) => movie.id !== action.id);
+    default:
+      return state;
+  }
+};
+
+var reducer = redux.combineReducers({
+  name: nameReducer,
+  hobbies: hobbiesReducer,
+  movies: moviesReducer
+});
 
 var store = redux.createStore(reducer, redux.compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
@@ -65,8 +60,6 @@ var store = redux.createStore(reducer, redux.compose(
 //Subscribe to changes
 var unsubscribe = store.subscribe(() => {
   var state = store.getState();
-
-  console.log('Name is', state.name);
   document.getElementById('app').innerHTML = state.name;
 });
 // unsubscribe();
