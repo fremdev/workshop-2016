@@ -1,1 +1,1 @@
-# Boilerplate
+# Basic Redux App(without React)
