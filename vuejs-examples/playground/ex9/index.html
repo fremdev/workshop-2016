@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue.js 2 - First impression</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="app">
+      <!-- @click - short form v-on:click -->
+      <!-- :href - short form v-bind:href -->
+      <h3>Sample #1</h3>
+      <div>
+        <button @click="startEffect">Start Effect</button>
+        <div class="effect" :class="currentClass"></div>
+      </div>
+
+      <h3>Sample #2</h3>
+      <div @click="isBlue = !isBlue" :class="['effect', {blue: isBlue}]"></div>
+
+      <h3>Sample #3</h3>
+      <div class="effect" :class="userClass"></div>
+      <input type="text" v-model="userClass">
+
+      <h3>Sample #4</h3>
+      <div class="effect" :class="[userClass, {circle: circleSwitch}]"></div>
+      <input type="text" v-model="userClass">
+      <input type="text" v-model="isCircle">
+
+      <h3>Sample #5</h3>
+      <div class="effect" :style="{width: userStyle}"></div>
+      <input type="text" v-model="userStyle">
+
+      <h3>Sample #6</h3>
+      <div>
+        <button @click="toggleProgress">{{ isRunning ? 'Stop Progress' : 'Start Progress' }}</button>
+        <div class="bar" :style="{width: calculatedWidth + 'px'}"></div>
+      </div>
+
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.js" charset="utf-8"></script>
+    <script src="app.js" charset="utf-8"></script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+.effect {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+}
+
+.highlight {
+  background-color: red;
+  width: 200px;
+}
+
+.shrink {
+  background-color: gray;
+  width: 50px;
+}
+
+.bar {
+  margin-top: 50px;
+  width: 0px;
+  height: 20px;
+  background-color: #8cee66;
+  border: 1px #5f9 solid;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.green {
+  background-color: green;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.orange {
+  background-color: orange;
+}
