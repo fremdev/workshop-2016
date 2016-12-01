@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue.js 2 - First impression</title>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <h3>v-if v-else example</h3>
+        <button @click="showFirst = !showFirst">Toggle</button>
+        <p v-if="showFirst">You either see me ...</p>
+        <p v-else>... or me</p>
+      </div>
+
+      <h3>List example</h3>
+      <ul>
+        <li v-for="(language, index) in languages" :key="language">{{ index + 1 }}. {{ language }}</li>
+      </ul>
+
+      <h3>Loop through object</h3>
+      <ul>
+        <li v-for="(value, key, index) in book" :key="key">
+          {{ index }}. {{ key }}: {{ value }}
+        </li>
+      </ul>
+
+      <h3>Nested loops with conditions</h3>
+      <ul>
+        <li v-for="value in testObj">
+          <div v-if="Array.isArray(value)">
+            <div v-for="num in value">{{ num }}</div>
+          </div>
+          <div v-else>{{ value }}</div>
+        </li>
+      </ul>
+
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.js" charset="utf-8"></script>
+    <script src="app.js" charset="utf-8"></script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue.js 2 - First impression</title>
+  </head>
+  <body>
+    <div id="app">
+      <p v-if="show">You can see me!</p>
+      <p v-else>Now you see me!</p>
+      <p>Do you also see me?</p>
+      <!-- It's possible using template tag for nesting more than 1 tag if you don't want to use div -->
+      <template v-if="show">
+        <h2>Head 2</h2>
+        <p>Inside a template</p>
+      </template>
+      <button @click="show = !show">Toggle Show</button>
+
+      <div>
+        <h4>List example</h4>
+        <ul>
+          <li v-for="ingredient in ingredients">{{ ingredient }}</li>
+        </ul>
+        <h4>List example with index</h4>
+        <ul>
+          <li v-for="(ingredient, i) in ingredients">{{ ingredient }} - {{ i }}</li>
+        </ul>
+        <hr>
+
+        <ul>
+          <li v-for="person in persons">
+            <div v-for="(value, key) in person">{{ key }}: {{ value }}</div>
+          </li>
+        </ul>
+        <hr>
+        <span v-for="n in 10">{{ n }} > </span>
+        <hr>
+        <!-- It's possible to use template for looping -->
+        <template v-for="(ingredient, index) in ingredients">
+          <h3>{{ ingredient }}</h3>
+          <p>{{ index }}</p>
+        </template>
+
+      </div>
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.js" charset="utf-8"></script>
+    <script src="app.js" charset="utf-8"></script>
+  </body>
+</html>
