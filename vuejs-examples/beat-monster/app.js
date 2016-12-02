@@ -8,20 +8,20 @@ new Vue({
   },
   methods: {
     getRandomNum: function(min, max) {
-      return Math.floor(Math.random() * (max - min) + min);
+      return Math.floor(Math.random() * (max - min + 1) + min);
     },
     monsterHits: function(min, max) {
       var hitScore = this.getRandomNum(min, max);
-      this.gameLog.push('Monster hits player for ' + hitScore);
+      this.gameLog.unshift('Monster hits player for ' + hitScore);
       this.userScore -= hitScore;
     },
     playerHits: function(min, max) {
       var hitScore = this.getRandomNum(min, max);
-      this.gameLog.push('Player hits monster for ' + hitScore);
+      this.gameLog.unshift('Player hits monster for ' + hitScore);
       this.monsterScore -= hitScore;
     },
     playerHeals: function() {
-      this.gameLog.push('Player heals himself for 10');
+      this.gameLog.unshift('Player heals himself for 10');
       this.userScore += 10;
     },
     attack: function() {
