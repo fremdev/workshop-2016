@@ -3,6 +3,7 @@
         <h3>You may view the User Details here</h3>
         <p>Many Details</p>
         <p>User Name: {{ name }}</p>
+        <p>User Age: {{ userAge }}</p>
         <button @click="resetName">Reset Name</button>
     </div>
 </template>
@@ -15,7 +16,8 @@
         required: true
         // It's possible to use default value:
         // default: 'Alex'
-      }
+      },
+      userAge: Number
     },
     methods: {
       resetName() {
