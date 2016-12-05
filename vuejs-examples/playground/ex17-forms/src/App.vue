@@ -54,13 +54,17 @@
                             <input
                                     type="checkbox"
                                     id="sendmail"
-                                    value="SendMail"> Send Mail
+                                    value="SendMail"
+                                    v-model="sendMail"
+                                    > Send Mail
                         </label>
                         <label for="sendInfomail">
                             <input
                                     type="checkbox"
                                     id="sendInfomail"
-                                    value="SendInfoMail"> Send Infomail
+                                    value="SendInfoMail"
+                                    v-model="sendMail"
+                                    > Send Infomail
                         </label>
                     </div>
 
@@ -72,13 +76,15 @@
                         <input
                                 type="radio"
                                 id="male"
-                                value="Male"> Male
+                                value="Male"
+                                v-model="gender"> Male
                     </label>
                     <label for="female">
                         <input
                                 type="radio"
                                 id="female"
-                                value="Female"> Female
+                                value="Female"
+                                v-model="gender"> Female
                     </label>
                 </div>
             </div>
@@ -87,8 +93,11 @@
                     <label for="priority">Priority</label>
                     <select
                             id="priority"
-                            class="form-control">
-                        <option></option>
+                            class="form-control"
+                            v-model="selectedPriority">
+                        <option
+                        v-for="priority in priorities"
+                        >{{ priority }}</option>
                     </select>
                 </div>
             </div>
@@ -115,10 +124,10 @@
                         <p style="white-space: pre">Message: {{ message }}</p>
                         <p><strong>Send Mail?</strong></p>
                         <ul>
-                            <li></li>
+                            <li v-for="mail in sendMail">{{ mail }}</li>
                         </ul>
-                        <p>Gender:</p>
-                        <p>Priority:</p>
+                        <p>Gender: {{ gender }}</p>
+                        <p>Priority: {{ selectedPriority }}</p>
                         <p>Switched:</p>
                     </div>
                 </div>
@@ -136,7 +145,11 @@
             password: '',
             age: 30
           },
-          message: 'Simple text goes here'
+          message: 'Simple text goes here',
+          sendMail: [],
+          gender: 'Male',
+          priorities: ['High', 'Medium', 'Low'],
+          selectedPriority: 'High'
         }
       }
     }
