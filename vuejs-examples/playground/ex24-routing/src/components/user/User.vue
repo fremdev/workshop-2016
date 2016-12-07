@@ -2,7 +2,7 @@
   <div>
     <h1>The User Page</h1>
     <hr>
-    <button @click="navigatToHome" class="btn btn-primary">To Home</button>
+    <button @click="navigateToHome" class="btn btn-primary">To Home</button>
     <router-view></router-view>
   </div>
 
@@ -10,8 +10,18 @@
 
 <script>
     export default {
+      // data() {
+      //    return {
+      //      id: this.$route.params.id
+      //    }
+      //  },
+      //  watch: {
+      //    '$route'(to, from) {
+      //      this.id = to.params.id;
+      //    }
+      //  },
       methods: {
-        navigatToHome() {
+        navigateToHome() {
           // this.$router.push('/');
           this.$router.push({name: 'home'});
         }
