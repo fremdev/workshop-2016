@@ -5,8 +5,7 @@
                 <h1>Routing</h1>
                 <hr>
                 <app-header></app-header>
-                <router-view>
-                </router-view>
+                <router-view></router-view>
             </div>
         </div>
     </div>
