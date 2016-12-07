@@ -13,6 +13,7 @@
                 </div>
                 <button class="btn btn-primary" @click="submit">Submit</button>
                 <hr>
+                <input class="form-control" type="text" v-model="node">
                 <button class="btn btn-primary" @click="fetchData">Get Data</button>
                 <br><br>
                 <ul class="list-group">
@@ -31,21 +32,36 @@
             username: '',
             email: ''
           },
-          users: []
+          users: [],
+          resource: {},
+          node: 'data'
         };
       },
       methods: {
         submit() {
-          this.$http.post('https://catch-of-the-day-6753f.firebaseio.com/data.json', this.user)
-            .then(response => {
-              console.log(response);
-            }, error => {
-              console.log(error);
-            });
+          // this.$http.post('data.json', this.user)
+          //   .then(response => {
+          //     console.log(response);
+          //   }, error => {
+          //     console.log(error);
+          //   });
+          // this.resource.save({}, this.user);
+          this.resource.saveAlt(this.user);
         },
         fetchData() {
-          this.$http.get('https://catch-of-the-day-6753f.firebaseio.com/data.json')
-            .then(response => {
+          // this.$http.get('data.json')
+          //   .then(response => {
+          //     return response.json();
+          //   })
+          //   .then(data => {
+          //     const resArray = [];
+          //     for (let key in data) {
+          //       resArray.push(data[key]);
+          //     }
+          //     this.users = resArray;
+          //   });
+          this.resource.getData({node: this.node})
+          .then(response => {
               return response.json();
             })
             .then(data => {
@@ -56,6 +72,13 @@
               this.users = resArray;
             });
         }
+      },
+      created() {
+        const customActions = {
+          saveAlt: {method: 'POST', url: 'alternative.json'},
+          getData: {method: 'GET'}
+        };
+        this.resource = this.$resource('{node}.json', {}, customActions);
       }
     }
 </script>
