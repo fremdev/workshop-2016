@@ -27,6 +27,13 @@
           hash: '#data'
         }
       }
+    },
+    beforeRouteEnter(to, from, next) {
+      if (true) { //some condition
+        next();
+      } else {
+        next(false);
+      }
     }
   }
 </script>
