@@ -19,6 +19,16 @@ Vue.http.interceptors.push((req, next) => {
   });
 });
 
+// configure route guards
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresGuest)
+    && Vue.auth.loggedIn()) {
+      next({ path: 'newsfeed'});
+  } else {
+    next();
+  }
+});
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
