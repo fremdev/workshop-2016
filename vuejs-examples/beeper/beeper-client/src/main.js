@@ -29,8 +29,15 @@ Vue.http.interceptors.push((req, next) => {
 router.beforeEach((to, from, next) => {
   if(to.matched.some(record => record.meta.requiresGuest)
     && Vue.auth.loggedIn()) {
-      next({ path: 'newsfeed'});
-  } else {
+      next({ path: '/newsfeed'});
+  } else if(to.matched.some(record => record.meta.requiresAuth)
+            && !Vue.auth.loggedIn()) {
+              next({
+                path: '/auth/login',
+                query: {redirect: to.fullPath}
+              })
+            }
+  else {
     next();
   }
 });

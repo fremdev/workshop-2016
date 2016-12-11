@@ -15,11 +15,12 @@ const router = new VueRouter({
     {
       path: '/',
       component: Dash,
-      redirect: 'newsfeed',
+      redirect: '/newsfeed',
       children: [
         {
           path: 'newsfeed',
-          component: Newsfeed
+          component: Newsfeed,
+          meta: { requiresAuth: true }
         }
       ]
     },
