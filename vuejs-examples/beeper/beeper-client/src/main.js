@@ -12,6 +12,12 @@ Vue.http.options.emulateJSON = true;
 alertify.defaults.notifier.position = 'top-right';
 
 Vue.http.interceptors.push((req, next) => {
+  if(!req.url.includes('http')) {
+    const token = Vue.auth.getToken();
+    if(token) {
+      req.headers.set('Authorization', 'Bearer ' + token);
+    }
+  }
   next((res) => {
     if(res.status == 422) {
       res.body.errors.forEach(e => alertify.error(e));
