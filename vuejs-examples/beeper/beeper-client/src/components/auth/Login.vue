@@ -29,8 +29,9 @@ export default {
   methods: {
     login() {
       this.$http.post("auth", this.user)
-        .then(res => {
-
+        .then(function(res) {
+          this.$auth.setToken(res.body.token, Date.now() + 14400000); // +4 hours
+          this.$router.push('newsfeed');
         });
     }
   }

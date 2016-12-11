@@ -2,8 +2,10 @@ import Vue from 'vue';
 import App from './App';
 import VueResource from 'vue-resource';
 import router from './routes';
+import Auth from './plugins/Auth';
 
 Vue.use(VueResource);
+Vue.use(Auth);
 Vue.http.options.root = process.env.API;
 Vue.http.options.emulateJSON = true;
 
