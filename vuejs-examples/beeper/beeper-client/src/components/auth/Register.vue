@@ -34,11 +34,6 @@ export default {
         .then((res) => {
           alertify.success("Success! You can now login with your email and password!");
           this.$router.push('/auth/login');
-        })
-        .catch((res) => {
-          if(res.status == 422) {
-            res.body.errors.forEach(e => alertify.error(e));
-          }
         });
     }
   }

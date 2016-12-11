@@ -4,10 +4,18 @@ import VueResource from 'vue-resource';
 import router from './routes';
 
 Vue.use(VueResource);
-Vue.http.options.root = 'http://localhost:9090';
+Vue.http.options.root = process.env.API;
 Vue.http.options.emulateJSON = true;
 
 alertify.defaults.notifier.position = 'top-right';
+
+Vue.http.interceptors.push((req, next) => {
+  next((res) => {
+    if(res.status == 422) {
+      res.body.errors.forEach(e => alertify.error(e));
+    }
+  });
+});
 
 /* eslint-disable no-new */
 new Vue({
