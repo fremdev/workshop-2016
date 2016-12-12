@@ -37,6 +37,12 @@
                 beepsLoading: false
             }
         },
+        watch: {
+          endpoint: function() {
+            this.beeps = [];
+            this.getBeeps();
+          }
+        },
         props: {
           endpoint: {type: String, default: "beeps"},
           showUserInfo: {type: Boolean, default: true}
