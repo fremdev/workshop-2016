@@ -3,6 +3,7 @@ import App from './App';
 import VueResource from 'vue-resource';
 import router from './routes';
 import Auth from './plugins/Auth';
+import store from './store';
 
 Vue.use(VueResource);
 Vue.use(Auth);
@@ -46,6 +47,7 @@ router.beforeEach((to, from, next) => {
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 });

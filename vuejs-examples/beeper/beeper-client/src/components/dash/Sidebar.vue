@@ -46,22 +46,19 @@
 export default {
   name: 'sidebar',
   created() {
-    if(this.loggedIn) {
-      this.getUser();
-    }
   },
   data() {
     return {
-      user: {},
       newBeep: '',
       loggedIn: this.$auth.loggedIn()
     }
   },
+  computed: {
+    user: function() {
+      return this.$store.state.currentUser;
+    }
+  },
   methods: {
-    getUser() {
-      this.$http.get('users/me')
-        .then(res => this.user = res.body);
-    },
     logout() {
       this.$auth.destroyToken();
       this.user = {};
