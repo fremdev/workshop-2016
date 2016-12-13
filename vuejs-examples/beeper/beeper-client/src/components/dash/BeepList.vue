@@ -26,6 +26,7 @@
             this.getBeeps(1);
 
             window.addEventListener('scroll', this.handleScroll);
+            this.$root.$on('newBeep', this.handleNewBeep);
         },
         destroyed: function() {
           window.removeEventListener('scroll', this.handleScroll);
@@ -65,6 +66,11 @@
                 if(this.page.current < this.page.last) {
                   this.getBeeps(this.page.current + 1);
                 }
+              }
+            },
+            handleNewBeep(beep) {
+              if(!this.$route.params.username || this.$route.params.username == beep.author.username) {
+                this.beeps.unshift(beep);
               }
             }
         }
