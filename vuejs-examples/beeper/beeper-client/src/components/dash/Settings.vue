@@ -5,7 +5,7 @@
             <div class="form-group valign">
                 <label class="col-sm-2 control-label">Avatar</label>
                 <div class="col-sm-10 text-center">
-                    <img :src="user.avatar" class="img-circle"><br>
+                    <img :src="image ? image : user.avatar" class="img-circle"><br>
                     <div class="fileUpload btn btn-default">
                         <span>Select a file</span>
                         <input type="file" class="upload" @change="fileChanged" id="imageFile">
@@ -35,20 +35,45 @@
 
     export default {
         name: 'settings',
-        data: function () {
-            return {
-                user: {}
-            }
+        data: function() {
+          return {
+            image: null
+          }
+        },
+        computed: {
+          user: function() {
+            return clone(this.$store.state.currentUser);
+          }
         },
         methods: {
             fileChanged: function (e) {
+              var reader = new FileReader();
+              reader.readAsDataURL(e.target.files[0]);
 
+              var self = this;
+              reader.onload = function(e) {
+                self.image = e.target.result;
+              };
             },
             uploadAvatar: function () {
+              var formData = new FormData();
+              formData.append("avatar", document.getElementById("imageFile").files[0]);
 
+              this.$http.put('users/me/avatar', formData)
+                .then(function(res) {
+                  this.user.avatar = res.body.avatar;
+                  this.$store.commit('setCurrentUser', this.user);
+                  this.image = null;
+
+                  alertify.success("Avatar updated!");
+                });
             },
             updateSettings: function () {
-
+              this.$http.put('users/me', this.user)
+                .then(function(res) {
+                  this.$store.commit('setCurrentUser', this.user);
+                  alertify.success('Settings updated');
+                });
             }
         }
     }
