@@ -2,8 +2,16 @@ import express from 'express';
 
 const app = express();
 
-app.get('/', (req, res) => {
+app.get('/notes', (req, res) => {
   res.send('Hello World!');
+});
+
+app.post('/notes', (req, res) => {
+
+});
+
+app.delete('/notes/:id', (req, res) => {
+
 });
 
 const server = app.listen(8080, () => {
